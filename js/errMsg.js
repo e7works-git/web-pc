@@ -34,5 +34,13 @@ const errMsg = {
     "10901":{
         "eng":"MISSING_REQURIED_PARAM"
         ,"kor":"필수 파라미터 누락"
+    },
+    "10114":{
+      "eng":"USER_NOT_ALLOWED"
+      ,"kor":"허용되지 않은 회원 ID입니다."
+    },
+    "10115":{
+      "eng":"CHANNEL_INVALID_PASSWORD"
+      ,"kor":"비밀번호 오류입니다."
     }
 }

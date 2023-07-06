@@ -850,8 +850,9 @@ function openPopup(msg, callback, option) {
 
 // 귓속말 팝업
 function openLayer(e) {
-  let sWidth = window.innerWidth;
-  let sHeight = window.innerHeight;
+  $('#whisper').show();
+  let sWidth = $('#chat').width();
+  let sHeight = $('#chat').height();
   let oWidth = $('.popupLayer').width();
   let oHeight = $('.popupLayer').height();
   let fWidth = $('#chat').offset().left;
@@ -875,7 +876,6 @@ function openLayer(e) {
       'z-index': 1,
     })
     .show();
-  $('#whisper').show();
 }
 function subOpenLayer(e) {
   // console.log("e", e)

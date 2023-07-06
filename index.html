@@ -26,7 +26,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://vchatcloud.com/lib/vchatcloud-last.min.js"></script>
-    <!--<script src="js/libs/e7lib.min.js"></script>-->
+    <!-- <script src="/js/e7lib.min.js"></script> -->
     <script src="https://vchatcloud.com/lib/e7lib-latest.min.js"></script>
     <script src="js/libs/jquery.als-2.1.min.js"></script>
     <script src="js/libs/toastr.min.js"></script>
@@ -46,6 +46,30 @@
     <div id="wrap">
       <section>
         <div class="pc">
+
+            <!-- 0213 참여자 제한 팝업 start -->
+            <div id="entry" class="popup_dim">
+              <div class="entry_wrap">
+                  <div class="entry_title">알림</div>
+                  <div class="entry_contentswrap">
+                      <div class="entry_form id">
+                          <label for="id">아이디</label>
+                          <input type="text" id="id">
+                      </div>
+                      <div class="entry_form pw">
+                          <label for="pw">비밀번호</label>
+                          <input type="password" id="pw">
+                      </div>
+                      <div class="entry_contents_subtitle">올바른 형식이 아닙니다. 다시 입력해주세요.</div>
+                  </div>
+                  <div class="entry_btnwrap">
+                    <button class="submit">확인</button>
+                    <button class="cancel">취소</button>
+                  </div>
+              </div>
+          </div>
+          <!-- 0213 참여자 제한 팝업 end -->
+
           <!-- 초대하기 팝업 시작-->
           <div class="invite-btn" style="display: none">
             <a href="#"><i class="fa-solid fa-user-plus"></i>초대하기</a>
@@ -56,7 +80,7 @@
               <p>접속URL</p>
               <form onsubmit="return false">
                 <input readonly type="text" />
-                <label><i class="fa-regular fa-clone"></i></label>
+                <label class="fa-regular fa-clone"></label>
               </form>
             </div>
             <div class="url-receive-user">
@@ -95,6 +119,17 @@
                 <p><i class="fas fa-exclamation-circle"></i></p>
                 <p>시스템이 원활하지 않아 오류가 발생하였습니다. 잠시 후, 다시 참여해 주시기 바랍니다.</p>
                 <a class="popupbtn" href="#!">닫기</a>
+              </div>
+
+              <div class="lock-room" style="display: none;">
+                <div>
+                  <span>비번</span>
+                  <input type="text">
+                </div>
+                <div>
+                  <span>이메일</span>
+                  <input type="text">
+                </div>
               </div>
               <!-- 에러 표시 팝업 끝 -->
 
