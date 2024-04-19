@@ -157,7 +157,6 @@ $(function () {
       chatHeight(false, true);
       channel.sendMessage({
         message: $('#content').text(),
-        messageType: JSON.stringify({ profile: res.profile }),
         mimeType: 'text',
       });
       $('#content').text('');
@@ -171,7 +170,6 @@ $(function () {
       e.preventDefault();
       channel.sendMessage({
         message: $(this).text(),
-        messageType: JSON.stringify({ profile: res.profile }),
         mimeType: 'text',
       });
       $(this).text('');
@@ -548,7 +546,6 @@ function fileUpdate(flag, res, isPrivate) {
     ];
     const data = {
       message: JSON.stringify(param),
-      messageType: JSON.stringify({ profile: channel.userInfo.profile }),
       mimeType: 'file',
     };
     if (isPrivate === true) {
@@ -574,10 +571,13 @@ function fileWrite(msg, pre, isPrivate) {
 
   if (data) {
     let param = {
-      profile: JSON.parse(msg.messageType).profile,
+      profile: "profile-1",
       clientKey: msg.clientKey,
       nickName: msg.nickName,
     };
+    if (msg?.userInfo?.profile) {
+      param.profile = `profile-${msg.userInfo.profile}`
+    }
     fileUtil.loadCheck({
       ext: data.type,
       key: data.id,
@@ -1085,10 +1085,7 @@ async function write(msg, tp, pre, sub) {
       break;
     case 'fileSend':
       cc = sub ? $('<div>', { class: 'newchat-comment-wrap' }) : $('<div>', { class: 'content' });
-      let profile = 'profile-1';
-      if (msg.profile) {
-        profile = 'profile-' + msg.profile;
-      }
+      let profile = msg?.profile ?? 'profile-1';
       cc.append($('<p>', { class: `profile-img ${profile}` }));
       if (channel.clientKey != msg.clientKey) {
         cc.append(
@@ -1140,8 +1137,8 @@ async function write(msg, tp, pre, sub) {
       } else if (typeof msg == 'object' && msg.message) {
         let _msg = $(`<input value='${msg.message}' />`).val()
         let profile = 'profile-1';
-        if (msg.messageType) {
-          profile = 'profile-' + JSON.parse(msg.messageType).profile;
+        if (msg?.userInfo?.profile) {
+          profile = `profile-${msg.userInfo.profile}`
         }
         cc.append($('<p>', { class: `profile-img ${profile}` }));
         if (channel.clientKey != msg.clientKey) {
